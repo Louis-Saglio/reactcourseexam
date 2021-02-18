@@ -19,10 +19,27 @@ export const articleService = {
   detail: (id) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        let find = articles.find(it => it.id === id);
-        console.log(find)
-        resolve(find)
+        resolve(articles.find(it => it.id === id))
       }, 1000 + Math.floor(Math.random() * 1000))
     })
-  }
+  },
+
+  create: (title, body) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        articles.push({title:title, body:body, id:articles.slice(-1)[0].id})
+        resolve(true)
+      }, 1000 + Math.floor(Math.random() * 1000))
+    })
+  },
+}
+
+export const authService = {
+  login: (username, password) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(username === 'admin' && password === 'root' ? 'admin' : 'user')
+      }, 1000 + Math.floor(Math.random() * 1000))
+    })
+  },
 }
